@@ -10,17 +10,20 @@
 
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
-# Fix 
-
 # Configure Touchpad
-riverctl input pointer-1267-12410-ELAN1203:00_04F3
-:307A_Touchpad natural-scroll enabled
+riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad natural-scroll enabled
 
-riverctl input pointer-1267-12410-ELAN1203:00_04F3
-:307A_Touchpad disable-while-typing disabled
+riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad disable-while-typing disabled
+
+riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap enabled
+
+riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap-button-map left-right-middle
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super+Shift Return spawn foot
+
+# Super+R to run Rofi
+riverctl map normal Super R spawn "rofi -show drun"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -136,8 +139,8 @@ do
     riverctl map $mode None XF86Eject spawn 'eject -T'
 
     # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
-    riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5'
-    riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5'
+    riverctl map -repeat $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5'
+    riverctl map -repeat $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5'
     riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute'
 
     # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
@@ -152,23 +155,39 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36
-riverctl border-color-focused 0x93a1a1
-riverctl border-color-unfocused 0x586e75
+~/.config/river/colors
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
-riverctl rule-add float -app-id 'float*' -title 'foo'
+riverctl float-filter-add app-id 'float*'
 
 # Make all views with app-id "bar" and any title use client-side decorations
-riverctl rule-add csd -app-id "bar"
+riverctl csd-filter-add app-id "bar"
 
 # Make all views with Foot use client-side decorations
-riverctl rule-add csd -app-id "foot"
+riverctl csd-filter-add app-id "foot"
 
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6 &
+rivertile -view-padding 10 -outer-padding 10 &
+
+# Focus follows cursor
+riverctl focus-follows-cursor normal
+
+# Start polkit agent
+/usr/libexec/polkit-gnome-authentication-agent-1
+
+# Default to 60Hz
+wlr-randr --output eDP-1 --mode 1920x1080@60.001999Hz
+
+# Polkit fix
+dbus-update-activation-environment --systemd DISPLAY
+
+# Wired Notification Daemon
+wired &
+
+# NetworkManager Applet
+nm-applet &

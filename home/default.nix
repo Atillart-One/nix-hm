@@ -3,6 +3,12 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./shell.nix
+    ./helix.nix
+    ./wezterm.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "atilla";
@@ -21,22 +27,18 @@
   # environment.
   home.packages = with pkgs; [
     # Fonts
-    nerdfonts
+    (nerdfonts.override {fonts = ["IBMPlexMono"];})
 
-    # GTK
-    # lxappearance
+    # nixGL
+    nixgl.nixGLIntel
 
-    # Terminal
-    foot
-  
     # Other packages
-    haskellPackages.greenclip
-    git
     nil
     alejandra
 
-    (writeShellScriptBin "nix-sudo" ''sudo $(which $1) ''${@: 2}'')
-    (writeShellScriptBin "nix-sudoedit" ''EDITOR=$(which hx) sudoedit $@'')
+    (writeShellScriptBin "sudo-nix" ''sudo $(which $1) ''${@: 2}'')
+    (writeShellScriptBin "sudoedit-nix" ''EDITOR=$(which hx) sudoedit $@'')
+    (writeShellScriptBin "wez" ''nixGLIntel wezterm'')
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -84,77 +86,8 @@
     #  EDITOR = "emacs";
   };
 
-  # Foot Setup
-  programs.foot = {
-    enable = true;
-    server.enable = true;
-    settings = {
-      main = {
-      shell = "/home/atilla/.nix-profile/bin/fish";
-        font = "BlexMono Nerd Font Mono";
-        pad = "20x20";
-      };
-
-      cursor = {
-        style = "block";
-        blink = "no";
-        beam-thickness = 1.5;
-      };
-      colors = {
-        background = "282828";
-        foreground = "ebdbb2";
-        regular0 = "282828";
-        regular1 = "cc241d";
-        regular2 = "98971a";
-        regular3 = "d79921";
-        regular4 = "458588";
-        regular5 = "b16286";
-        regular6 = "689d6a";
-        regular7 = "a89984";
-        bright0 = "928374";
-        bright1 = "fb4934";
-        bright2 = "b8bb26";
-        bright3 = "fabd2f";
-        bright4 = "83a598";
-        bright5 = "d3869b";
-        bright6 = "8ec07c";
-        bright7 = "ebdbb2";
-      };
-    };
-  };
-
-  # Editor Setup
-  programs.helix = {
-    enable = true;
-    settings = {
-      theme = "gruvbox";
-      editor.lsp.display-messages = true;
-      keys.normal = {
-        space.space = "file_picker";
-        space.w = ":w";
-        space.q = ":q";
-      };
-    };
-
-    languages = [
-      {
-        name = "nix";
-        formatter = {command = "alejandra";};
-      }
-    ];
-  };
-
   # Manage fonts
   fonts.fontconfig.enable = true;
-
-  # Shell
-  # programs.bash.enable = true;
-  # programs.bash.initExtra = "fish";
-  programs.fish.enable = true;
-  programs.fzf.enable = true;
-  programs.starship.enable = true;
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

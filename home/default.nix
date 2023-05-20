@@ -4,15 +4,21 @@
   ...
 }: {
   imports = [
+    ./fonts.nix
     ./shell.nix
-    ./helix.nix
+    ./gtk.nix
+#    ./helix.nix
     ./wezterm.nix
+    ./awesome.nix
+    ./emacs.nix
+    ./nvim.nix
+#    ./lite-xl.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "atilla";
-  home.homeDirectory = "/home/atilla";
+  home.username = "atillart";
+  home.homeDirectory = "/home/atillart";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -26,15 +32,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # Fonts
-    (nerdfonts.override {fonts = ["IBMPlexMono"];})
-
     # nixGL
     nixgl.nixGLIntel
 
     # Other packages
     nil
     alejandra
+
+    nordic
 
     (writeShellScriptBin "sudo-nix" ''sudo $(which $1) ''${@: 2}'')
     (writeShellScriptBin "sudoedit-nix" ''EDITOR=$(which hx) sudoedit $@'')
@@ -79,7 +84,7 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/atilla/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/atillart/etc/profile.d/hm-session-vars.sh
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {

@@ -1,7 +1,7 @@
 {theme = rec {
+  name = "oxocarbon-dark";
   theme = "gruvbox";
-  wezterm = "GruvboxDark";
-  helix = "${theme}";
+  helix = "${theme}_light";
   font = {
     mono = "BlexMono Nerd Font Mono";
   };

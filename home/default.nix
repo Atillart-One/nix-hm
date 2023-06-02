@@ -35,11 +35,13 @@
     # nixGL
     nixgl.nixGLIntel
 
+    # Wayland
+    wlr-randr
+    rofi-wayland
+
     # Other packages
     nil
     alejandra
-
-    nordic
 
     (writeShellScriptBin "sudo-nix" ''sudo $(which $1) ''${@: 2}'')
     (writeShellScriptBin "sudoedit-nix" ''EDITOR=$(which hx) sudoedit $@'')

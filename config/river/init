@@ -23,7 +23,7 @@ riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap-button-map 
 riverctl map normal Super+Shift Return spawn foot
 
 # Super+R to run Rofi
-riverctl map normal Super R spawn "rofi -show drun"
+riverctl map normal Super R spawn "$(which rofi) -show drun"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -187,7 +187,7 @@ wlr-randr --output eDP-1 --mode 1920x1080@60.001999Hz
 dbus-update-activation-environment --systemd DISPLAY
 
 # Wired Notification Daemon
-wired &
+# wired &
 
 # NetworkManager Applet
-nm-applet &
+# nm-applet &

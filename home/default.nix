@@ -9,7 +9,7 @@
     ./gtk.nix
 #    ./helix.nix
     ./wezterm.nix
-    ./awesome.nix
+#   ./awesome.nix
     ./emacs.nix
     ./nvim.nix
 #    ./lite-xl.nix

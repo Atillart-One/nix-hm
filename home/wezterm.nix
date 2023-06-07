@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   theme = (import ./theme.nix).theme;
-in {
+in
+{
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -10,7 +12,7 @@ in {
         config = wezterm.config_builder()
       end
 
-      colors, metadata = wezterm.color.load_base16_scheme("${config.home.homeDirectory}/nix-hm/colors/${theme.name}.yaml")
+      colors, metadata = wezterm.color.load_base16_scheme("${config.home.homeDirectory}/homefiles/colors/${theme.name}.yaml")
       config.colors = colors
       config.font = wezterm.font '${theme.font.mono}'
       config.use_fancy_tab_bar = false

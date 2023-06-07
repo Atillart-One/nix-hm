@@ -17,8 +17,8 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "atillart";
-  home.homeDirectory = "/home/atillart";
+  home.username = "atilla";
+  home.homeDirectory = "/home/atilla";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -42,6 +42,7 @@
     # Other packages
     nil
     alejandra
+    git
 
     (writeShellScriptBin "sudo-nix" ''sudo $(which $1) ''${@: 2}'')
     (writeShellScriptBin "sudoedit-nix" ''EDITOR=$(which hx) sudoedit $@'')

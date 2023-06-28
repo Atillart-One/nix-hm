@@ -20,7 +20,7 @@ riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap enabled
 riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap-button-map left-right-middle
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
-riverctl map normal Super+Shift Return spawn foot
+riverctl map normal Super+Shift Return spawn wez
 
 # Super+R to run Rofi
 riverctl map normal Super R spawn "$(which rofi) -show drun"
@@ -172,16 +172,16 @@ riverctl csd-filter-add app-id "foot"
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 10 -outer-padding 10 &
+rivertile -view-padding 2 -outer-padding 10 &
 
 # Focus follows cursor
 riverctl focus-follows-cursor normal
 
-# Start polkit agent
-/usr/libexec/polkit-gnome-authentication-agent-1
-
 # Default to 60Hz
 wlr-randr --output eDP-1 --mode 1920x1080@60.001999Hz
+
+# Start polkit agent
+/usr/libexec/polkit-gnome-authentication-agent-1
 
 # Polkit fix
 dbus-update-activation-environment --systemd DISPLAY

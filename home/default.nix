@@ -1,18 +1,18 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   imports = [
     ./fonts.nix
     ./shell.nix
     ./gtk.nix
-#    ./helix.nix
+    #    ./helix.nix
     ./wezterm.nix
-#   ./awesome.nix
+    ./river.nix
+    #   ./awesome.nix
     ./emacs.nix
     ./nvim.nix
-#    ./lite-xl.nix
+    #    ./lite-xl.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

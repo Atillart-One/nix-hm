@@ -6,7 +6,7 @@
     ./fonts.nix
     ./shell.nix
     ./gtk.nix
-    ./helix.nix
+    #    ./helix.nix
     ./wezterm.nix
     ./river.nix
     #   ./awesome.nix

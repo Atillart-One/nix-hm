@@ -13,8 +13,8 @@
       src = prev.fetchFromGitHub {
         owner = "riverwm";
         repo = "river";
-        rev = "93a567ca945bd1f8a04b6453e59e0dbaeed0fcb3";
-        hash = "sha256-5tPFFTgQhvq5ZE/7qHA0dLtqs09v3WiUWpmXFqiIREc=";
+        rev = "0b142bd16baab2dba9e01444892032d05c179c2a";
+        hash = "sha256-5wHyh3CXN4dJN+QZXFqtCBOTeqrO/B8cB4LtqDKv0Rg=";
         fetchSubmodules = true;
       };
     });

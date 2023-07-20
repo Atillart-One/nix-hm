@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   theme = (import ./theme.nix).theme;
 in
@@ -14,7 +14,7 @@ in
 
       config.default_prog = { '/home/atilla/.nix-profile/bin/fish', '-l' }
 
-      colors, metadata = wezterm.color.load_base16_scheme("${config.home.homeDirectory}/homefiles/colors/${theme.name}.yaml")
+      colors, metadata = wezterm.color.load_base16_scheme("/home/atilla/homefiles/colors/theme.yaml")
       config.colors = colors
       config.font = wezterm.font '${theme.font.mono}'
       config.use_fancy_tab_bar = false

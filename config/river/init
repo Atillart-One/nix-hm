@@ -20,10 +20,10 @@ riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap enabled
 riverctl input pointer-1267-12410-ELAN1203:00_04F3:307A_Touchpad tap-button-map left-right-middle
 
 # Super+Shift+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
-riverctl map normal Super+Shift Return spawn wez
+riverctl map normal Super+Shift Return spawn foot
 
 # Super+R to run Rofi
-riverctl map normal Super R spawn "$(which rofi) -show drun"
+riverctl map normal Super R spawn "rofi -show drun"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -149,9 +149,9 @@ do
     riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
     riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
 
-    # Control screen backlight brightness with light (https://github.com/haikarainen/light)
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 5'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
+    # Control screen backlight brightness with brightnessctl
+    riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +5%'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
 done
 
 # Set background and border color
@@ -181,10 +181,13 @@ riverctl focus-follows-cursor normal
 wlr-randr --output eDP-1 --mode 1920x1080@60.001999Hz
 
 # Start polkit agent
-/usr/libexec/polkit-gnome-authentication-agent-1
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
 # Polkit fix
 dbus-update-activation-environment --systemd DISPLAY
+
+# wluma
+nixVulkanIntel wluma &
 
 # Wired Notification Daemon
 # wired &

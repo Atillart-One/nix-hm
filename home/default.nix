@@ -1,17 +1,18 @@
-{ config
-, pkgs
-, ...
+{
+  pkgs,
+  ...
 }: {
   imports = [
     ./fonts.nix
     ./shell.nix
     ./gtk.nix
     ./helix.nix
+    ./foot.nix
     ./wezterm.nix
     ./river.nix
     #   ./awesome.nix
     ./emacs.nix
-    ./nvim.nix
+    #    ./nvim.nix
     #    ./lite-xl.nix
   ];
 
@@ -34,19 +35,25 @@
   home.packages = with pkgs; [
     # nixGL
     nixgl.nixGLIntel
+    nixgl.nixVulkanIntel
 
     # Wayland
     wlr-randr
     rofi-wayland
+
+    # Desktop
+    pamixer
+    brightnessctl
+    wluma
+    pavucontrol
 
     # Other packages
     nil
     alejandra
     git
 
-    (writeShellScriptBin "sudo-nix" ''sudo $(which $1) ''${@: 2}'')
-    (writeShellScriptBin "sudoedit-nix" ''EDITOR=$(which hx) sudoedit $@'')
-    (writeShellScriptBin "wez" ''nixGLIntel wezterm'')
+    (writeShellScriptBin "nsudo" ''sudo env "PATH=$PATH" $@'')
+    (writeShellScriptBin "nsudoedit" ''EDITOR=$(which hx) sudoedit $@'')
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

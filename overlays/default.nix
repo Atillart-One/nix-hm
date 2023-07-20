@@ -18,5 +18,15 @@
         fetchSubmodules = true;
       };
     });
+    rofi-wayland-unwrapped = prev.rofi-wayland-unwrapped.overrideAttrs (oldAttrs: rec {
+      version = "d06095b5ed40e5d28236b7b7b575ca867696d847";
+      src = prev.fetchFromGitHub {
+        owner = "lbonn";
+        repo = "rofi";
+        rev = version;
+        hash = "sha256-8IfHpaVFGeWqyw+tLjNtg+aWwAHhSA5PuXJYjpoht2E=";
+        fetchSubmodules = true;
+      };
+    });
   };
 }

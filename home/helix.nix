@@ -3,20 +3,26 @@ let
 in {
   programs.helix = {
     enable = true;
+    defaultEditor = true;
     settings = {
-      theme = theme.helix;
-      editor.lsp.display-messages = true;
+      theme = "base16_terminal";
+      editor = {
+        line-number = "relative";
+        lsp.display-messages = true;
+      };
       keys.normal = {
         space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
       };
     };
-    languages = [
-      {
-        name = "nix";
-        formatter = {command = "alejandra";};
-      }
-    ];
+    languages = {
+      language = [
+        {
+          name = "nix";
+          formatter = {command = "alejandra";};
+        }
+      ];
+    };
   };
 }

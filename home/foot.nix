@@ -5,7 +5,7 @@
     settings = {
       main = {
         shell = "fish";
-        font = "Fairfax HD";
+        # font = "Fairfax HD";
         dpi-aware = "yes";
         pad = "10x10center";
       };

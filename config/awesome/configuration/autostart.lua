@@ -16,7 +16,7 @@ return {
     -- '/usr/libexec/polkit-gnome-authentication-agent-1', -- credential manager - path for void linux
     -- 'blueman-tray', -- bluetooth tray
     'xrandr --output eDP-1 --mode 1920x1080 --refresh 60',
-    'xset r rate 250 50',
+    'xset r rate 300 50',
     
     -- Add applications that need to be killed between reloads
     -- to avoid multipled instances, inside the awspawn script

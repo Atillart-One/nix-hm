@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=River Nix
+Comment=A dynamic tiling Wayland compositor
+Exec=dbus-run-session /home/atilla/.nix-profile/bin/nixGLIntel /home/atilla/.nix-profile/bin/river
+Type=Application

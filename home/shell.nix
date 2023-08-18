@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   targets.genericLinux.enable = true;
   programs = {
     bash = {
@@ -9,6 +9,20 @@
     fish = {
       enable = true;
       interactiveShellInit = "export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive";
+      plugins = [
+        {
+          name = "z";
+          src = inputs.z-fish.outPath;
+        }
+        {
+          name = "fzf.fish";
+          src = inputs.fzf-fish.outPath;
+        }
+        {
+          name = "base16-fish";
+          src = inputs.base16-fish.outPath;
+        }
+      ];
     };
     fzf.enable = true;
     # starship.enable = true;

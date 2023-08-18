@@ -1,14 +1,9 @@
-{ config, pkgs, nix-colors, ... }:
-
-let
-  theme = (import ./theme.nix).theme;
-in
 {
-  imports = [
-    nix-colors.homeManagerModules.default
-  ];
-
-  home.packages = [ pkgs.lite-xl ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = [pkgs.lite-xl];
   home.file.".config/lite-xl/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/homefiles/config/lite-xl/init.lua";
   xdg.configFile = {
     ".config/lite-xl/colors/colors.lua".text = ''
@@ -29,7 +24,7 @@ in
       style.line_highlight = { common.color "#32302f" }
       style.scrollbar = { common.color "#928374" }
       style.scrollbar2 = { common.color "#fbf1c7" }
-  
+
       style.syntax["normal"] = { common.color "#ebdbb2" }
       style.syntax["symbol"] = { common.color "#ebdbb2" }
       style.syntax["comment"] = { common.color "#928374" }

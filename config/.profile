@@ -26,4 +26,4 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-nixGLIntel river
+export NIXPKGS_ALLOW_UNFREE=1
